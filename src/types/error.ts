@@ -1,4 +1,6 @@
 export type ApiErrorType =
+  | "DB_UPDATE_ERROR"
+  | "DB_TRANSACTION_ERROR"
   | "DB_CONNECTION_ERROR"
   | "DB_QUERY_ERROR"
   | "NOT_FOUND"
@@ -6,7 +8,8 @@ export type ApiErrorType =
   | "UNAUTHORIZED"
   | "FORBIDDEN"
   | "INTERNAL_SERVER_ERROR"
-  | "UNKNOWN";
+  | "UNKNOWN"
+  | "BAD_REQUEST";
 
 export interface ApiError {
   code: ApiErrorType;
