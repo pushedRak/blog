@@ -28,6 +28,15 @@ button {
   background-color: inherit;
 }
 
+/* 커스텀 폰트 정의 */
+@font-face {
+  font-family: "Pretendard Variable";
+  src: url("/fonts/PretendardVariable.woff2") format("woff2-variations");
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* CSS 변수 설정 */
 :root {
   /* 색상 */
@@ -43,6 +52,9 @@ button {
 
   --color-accent: #80002A;
   --color-accent-hover: #A8324A;
+
+  /* font-family */
+  --font-main: "Pretendard Variable", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
 
   /* font-size */
   --font-size-xxl: 2.25rem;   /* 36px */
@@ -111,6 +123,7 @@ button {
 
 /* 기본 스타일 설정 */
 body {
+  font-family: var(--font-main);
   font-weight: var(--font-weight-regular);
   color: var(--color-text-primary);
   background-color: var(--color-bg);
