@@ -1,0 +1,66 @@
+.indicatorContainer {
+  position: fixed;
+  right: 2.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+}
+
+.indicatorList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.indicatorItem {
+  font-size: 0.9rem;
+  color: #aaa;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  padding-right: 0.625rem;
+  text-align: right;
+}
+
+.indicatorItem::after {
+  content: '';
+  position: absolute;
+  right: -0.625rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 50%;
+  background-color: #ddd;
+  transition: all 0.3s ease;
+}
+
+.indicatorItem:hover {
+  color: #666;
+}
+
+.indicatorItem:hover::after {
+  background-color: #999;
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+.indicatorItem.active {
+  color: #333;
+  font-weight: 600;
+}
+
+.indicatorItem.active::after {
+  background-color: #333;
+  width: 0.625rem;
+  height: 0.625rem;
+}
+
+@media (max-width: 1279px) {
+  .indicatorContainer {
+    display: none;
+  }
+}

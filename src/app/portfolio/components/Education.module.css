@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.educationWrapper {
+  display: flex;
+  gap: 2rem;
+  font-size: 1.1rem;
+}
+
+.period {
+  color: var(--color-text-tertiary);
+}
+
+.title {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  color: var(--color-text-tertiary);
+  padding-bottom: 1rem;
+}
+
+.description {
+  list-style: square;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: 1.25rem;
+  font-size: 0.8rem;
+
+  p {
+    font-size: 1.1rem;
+  }
+}

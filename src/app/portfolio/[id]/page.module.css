@@ -1,0 +1,70 @@
+.container {
+  max-width: 60rem;
+  margin: 5rem auto;
+}
+
+.head3 {
+  margin-top: 1rem;
+  padding-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.projectTitle {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.projectSubtitle {
+  margin-top: 0.25rem;
+  font-size: 1.2rem;
+  color: var(--color-text-secondary);
+}
+
+.projectPeriod {
+  margin-right: 1rem;
+}
+
+.projectPeriod,
+.projectTeamSize {
+  font-size: 0.95rem;
+  color: var(--color-text-tertiary);
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.techStackContainer {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.detailContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.detailImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.7;
+}
+
+.list {
+  list-style: disc;
+  margin-left: 1.5rem;
+}
+
+.work {
+  font-weight: bold;
+}
+
+.linkButton {
+  display: flex;
+  justify-content: center;
+}

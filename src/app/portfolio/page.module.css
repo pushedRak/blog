@@ -1,0 +1,25 @@
+.page {
+  flex: 1;
+  position: relative;
+  max-width: 75rem;
+  min-height: 100vh;
+  margin: 0 auto;
+}
+
+.greeting {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-size: 3.5rem;
+  font-weight: bold;
+  line-height: 1.25;
+}
+
+.introduction {
+  font-size: 1.25rem;
+  color: var(--color-text-tertiary);
+}
+
+.name {
+  color: var(--color-accent);
+  font-style: normal;
+}

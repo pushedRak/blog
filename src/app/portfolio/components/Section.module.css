@@ -1,0 +1,25 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 5rem;
+  padding-bottom: 10rem;
+}
+
+.sectionTitleContainer {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.sectionTitle {
+  padding-bottom: 0.5rem;
+  color: var(--color-accent);
+  font-size: 1.5rem;
+}
+
+.sectionDescription {
+  font-size: 1.3rem;
+  line-height: 1.5;
+}
