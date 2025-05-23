@@ -1,0 +1,14 @@
+.content {
+  display: flex;
+}
+
+.main {
+  flex: 1;
+  padding: 3.75rem var(--space-xl);
+}
+
+@media (max-width: 63.999rem) {
+  .main {
+    padding: 3.75rem var(--space-md);
+  }
+}
