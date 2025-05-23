@@ -1,14 +1,14 @@
-import { Post } from "@customTypes/post";
+import { Tag } from "@customTypes/post";
 import { createApiError } from "@utils/apiError";
 import { createAdminClient } from "@utils/supabase/admin";
 import { NextResponse } from "next/server";
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const supabase = await createAdminClient();
-  const { id } = params;
+  const { id } = await params;
 
   try {
     // 포스트 존재 여부 확인
@@ -68,13 +68,13 @@ export async function PATCH(
       );
     }
 
-    // 태그 데이터 정리
-    const tags = data.post_tags?.map((pt: Post) => pt.tags) || [];
+    // 태그 데이터 정리 - 타입 수정
+    const tags = data.post_tags?.map((pt: { tags: Tag }) => pt.tags) || [];
 
     const responseData = {
       ...data,
       tags,
-      post_tags: undefined, // 불필요한 중간 테이블 데이터 제거
+      post_tags: undefined,
     };
 
     return NextResponse.json(responseData);
