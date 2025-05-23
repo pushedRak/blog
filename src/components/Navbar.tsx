@@ -6,8 +6,10 @@ import Logo from "./Logo";
 import styles from "./Navbar.module.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Category } from "@customTypes/category";
+import { getCategoryLabel } from "@utils/categoryMapper";
 
-export default function Navbar() {
+export default function Navbar({ categories }: { categories: Category[] }) {
   const [isExpanded, setIsExpanded] = useState(true);
   const pathname = decodeURI(usePathname());
 
@@ -38,6 +40,17 @@ export default function Navbar() {
           >
             홈
           </Link>
+          {categories.map((category) => (
+            <Link
+              key={category.id}
+              className={`${styles.link} ${
+                pathname === `/${category.name}` ? styles.active : ""
+              }`}
+              href={`/${category.name}`}
+            >
+              {getCategoryLabel(category.name)}
+            </Link>
+          ))}
         </div>
       </div>
       <div
