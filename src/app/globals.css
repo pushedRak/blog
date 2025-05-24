@@ -26,6 +26,7 @@ ol, ul, menu {
 button {
   border: none;
   background-color: inherit;
+  cursor: pointer;
 }
 
 /* 커스텀 폰트 정의 */
@@ -52,6 +53,9 @@ button {
 
   --color-accent: #2563eb;
   --color-accent-hover: #3b82f6;
+
+  /* 포커스 스타일 */
+  --focus-ring: 0 0 0 0.125rem var(--color-accent);
 
   /* font-family */
   --font-main: "Pretendard Variable", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
@@ -98,7 +102,7 @@ button {
   --radius-full: 9999px;
 
   /* 그림자 */
-  --box-shadow-sm: 0.03125rem 0.03125rem 0.25rem;
+  --box-shadow-sm: 0.03125rem 0.03125rem 0.25rem var(--shadow-color);
 
   /* 그림자 색상 */
   --shadow-color: rgba(0, 0, 0, 0.2);
@@ -123,6 +127,11 @@ button {
     --shadow-color: rgba(0, 0, 0, 0.5);
     --shadow-color-darker: rgba(0, 0, 0, 0.7);
   }
+}
+
+*:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
 }
 
 /* 기본 스타일 설정 */
