@@ -4,10 +4,10 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   req: Request,
-  { params }: { params: { category: string; slug: string } }
+  { params }: { params: Promise<{ category: string; slug: string }> }
 ) {
   const supabase = await createClient();
-  const { category, slug } = params;
+  const { category, slug } = await params;
 
   try {
     // 1. 포스트 조회
