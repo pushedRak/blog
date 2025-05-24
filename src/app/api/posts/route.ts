@@ -1,5 +1,4 @@
 import { createApiError } from "@utils/apiError";
-import { createAdminClient } from "@utils/supabase/admin";
 import { createClient } from "@utils/supabase/server";
 import { NextResponse } from "next/server";
 
@@ -75,21 +74,18 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  const supabase = await createAdminClient();
+  const supabase = await createClient();
   const body = await req.json();
 
   try {
-    const { data: postId, error } = await supabase.rpc(
-      "create_post_with_tags",
-      {
-        title: body.title,
-        slug: body.slug,
-        content: body.content,
-        category_id: body.categoryId,
-        metadata: body.metadata || {},
-        tags: body.tags || [],
-      }
-    );
+    const { data: postId, error } = await supabase.rpc("create_post_complete", {
+      title: body.title,
+      slug: body.slug,
+      content: body.content,
+      category_id: body.categoryId,
+      metadata: body.metadata || {},
+      tags: body.tags || [],
+    });
 
     if (error) {
       return createApiError(

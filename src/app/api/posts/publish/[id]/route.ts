@@ -1,13 +1,13 @@
 import { Tag } from "@customTypes/post";
 import { createApiError } from "@utils/apiError";
-import { createAdminClient } from "@utils/supabase/admin";
+import { createClient } from "@utils/supabase/server";
 import { NextResponse } from "next/server";
 
 export async function PATCH(
   req: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const supabase = await createAdminClient();
+  const supabase = await createClient();
   const { id } = await params;
 
   try {
