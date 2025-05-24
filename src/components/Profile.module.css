@@ -1,0 +1,70 @@
+.profileWrapper {
+  position: relative;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin: 0 var(--space-md);
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+} 
+
+.profileTrigger {
+  width: 100%;
+  height: 100%;
+}
+
+.profileTrigger:hover .profileImage {
+  opacity: 0.8;
+}
+
+.profileImage {
+  border-radius: var(--radius-full);
+  transition: opacity 0.2s ease;
+}
+
+.profileImageWrapper {
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-full);
+}
+
+.profileMenu {
+  position: absolute;
+  z-index: 1000;
+  top: 3rem;
+  right: 0;
+  width: 18.75rem;
+  height: auto;
+  background-color: var(--color-bg-primary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--box-shadow-sm);
+}
+
+.profileSection {
+  padding: var(--space-md);
+  cursor: default;
+}
+
+.section {
+  padding: var(--space-xs) 0;
+}
+
+.email {
+  color: var(--color-text-tertiary);
+  font-size: var(--font-size-sm);
+}
+
+.divider {
+  height: 0.0625rem;
+  background-color: var(--color-border);
+}
+
+.button {
+  padding: var(--space-xs) var(--space-md);
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: var(--color-bg-tertiary);
+}

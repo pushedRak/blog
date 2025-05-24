@@ -8,6 +8,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Category } from "@customTypes/category";
 import { getCategoryLabel } from "@utils/categoryMapper";
+import Flex from "./Flex";
+import Profile from "./Profile";
 
 export default function Navbar({ categories }: { categories: Category[] }) {
   const [isExpanded, setIsExpanded] = useState(true);
@@ -16,15 +18,18 @@ export default function Navbar({ categories }: { categories: Category[] }) {
   return (
     <>
       <div className={styles.header}>
-        <button
-          className={styles.barLeftIconWrapper}
-          onClick={() => setIsExpanded((prev) => !prev)}
-        >
-          <BarLeftIcon width={24} height={24} strokeWidth={5} />
-        </button>
-        <Link className={styles.logoWrapper} href="/">
-          <Logo width={44.8} height={28} />
-        </Link>
+        <Flex align="center">
+          <button
+            className={styles.barLeftIconWrapper}
+            onClick={() => setIsExpanded((prev) => !prev)}
+          >
+            <BarLeftIcon width={24} height={24} strokeWidth={5} />
+          </button>
+          <Link className={styles.logoWrapper} href="/">
+            <Logo width={44.8} height={28} />
+          </Link>
+        </Flex>
+        <Profile />
       </div>
       <div
         className={`${styles.sidebar} ${
