@@ -1,41 +1,39 @@
 import { createApiError } from "@utils/apiError";
+import { createClient } from "@utils/supabase/server";
 import { cookies } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function POST(req: NextRequest) {
+export async function DELETE() {
+  // 로그아웃 처리
   try {
-    const { password } = await req.json();
+    const supabase = await createClient();
+    await supabase.auth.signOut();
 
-    if (password === process.env.ADMIN_PASSWORD) {
-      (await cookies()).set("admin_authenticated", "true", {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        maxAge: 60 * 60,
-        path: "/",
-      });
+    (await cookies()).delete("admin_authenticated");
 
-      return NextResponse.json({ success: true });
-    } else {
-      return createApiError("UNAUTHORIZED", "비밀번호가 다릅니다.", 401);
-    }
-  } catch (err: unknown) {
-    let message = "알 수 없는 오류입니다.";
-
-    if (err instanceof Error) {
-      message = err.message;
-    }
-
+    return NextResponse.json({ success: true });
+  } catch {
     return createApiError(
       "INTERNAL_SERVER_ERROR",
-      "서버 내부 오류가 발생했습니다.",
-      500,
-      message
+      "로그아웃 중 오류가 발생했습니다.",
+      500
     );
   }
 }
 
 export async function GET() {
-  const isAdmin =
-    (await cookies()).get("admin_authenticated")?.value === "true";
-  return NextResponse.json({ isAdmin });
+  try {
+    const supabase = await createClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    const isAdmin =
+      (await cookies()).get("admin_authenticated")?.value === "true" &&
+      user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+
+    return NextResponse.json({ isAdmin, user: user?.email });
+  } catch {
+    return NextResponse.json({ isAdmin: false });
+  }
 }
