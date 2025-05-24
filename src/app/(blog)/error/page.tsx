@@ -1,20 +1,17 @@
-"use client";
-import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import Link from "next/link";
 
-export default function ErrorPage() {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const [error, setError] = useState("");
+interface ErrorPageProps {
+  searchParams: Promise<{
+    type?: string;
+  }>;
+}
 
-  useEffect(() => {
-    const errorType = searchParams.get("type");
-    setError(errorType || "unknown");
-  }, [searchParams]);
+export default async function ErrorPage({ searchParams }: ErrorPageProps) {
+  const errorType = (await searchParams).type || "unknown";
 
   const getErrorContent = () => {
-    switch (error) {
-      case "unauthorize":
+    switch (errorType) {
+      case "unauthorized":
         return {
           title: "접근 권한이 없습니다",
           message: "관리자만 접근할 수 있는 페이지입니다.",
@@ -45,7 +42,7 @@ export default function ErrorPage() {
         <p>{errorContent.message}</p>
 
         <div style={{ marginTop: "1rem" }}>
-          <button onClick={() => router.push("/")}>홈으로 돌아가기</button>
+          <Link href="/">홈으로 돌아가기</Link>
         </div>
       </div>
     </div>
