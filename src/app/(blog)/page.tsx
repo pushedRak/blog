@@ -1,3 +1,46 @@
-export default function BlogHomePage() {
-  return <div>블로그 홈</div>;
+import SafeImage from "@components/SafeImage";
+import styles from "./page.module.css";
+import { PostListItem } from "@customTypes/post";
+import { getPosts } from "@services/post";
+import { getRelativeTime } from "@utils/formatDate";
+import Link from "next/link";
+
+export default async function BlogHomePage() {
+  const posts: PostListItem[] = await getPosts({
+    page: 1,
+    limit: 10,
+  });
+
+  return (
+    <div>
+      <div>
+        <h1>최근 포스트</h1>
+        <div className={styles.postsContainer}>
+          {posts.map((post) => (
+            <Link key={post.id} href={`/${post.categories?.name}/${post.slug}`}>
+              <div className={styles.imageWrapper}>
+                <SafeImage
+                  alt="thumbnail"
+                  src={post.metadata.thumbnailUrl}
+                  fill
+                />
+              </div>
+              <div>
+                <h3 className={styles.postTitle}>{post.title}</h3>
+                <p className={styles.postDescription}>
+                  {post.metadata.description}
+                </p>
+                <div className={styles.postViewAndDate}>
+                  <span>조회수 {post.view_count}회</span>
+                  <span className={styles.date}>
+                    {getRelativeTime(post.published_at)}
+                  </span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }

@@ -1,3 +1,5 @@
+import { getCategoryLabel } from "@utils/categoryMapper";
+
 export default async function CategoryPage({
   params,
 }: {
@@ -7,7 +9,7 @@ export default async function CategoryPage({
 
   return (
     <div>
-      <h1>{category}</h1>
+      <h1>{getCategoryLabel(category)}</h1>
     </div>
   );
 }

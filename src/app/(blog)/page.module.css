@@ -1,0 +1,36 @@
+.postsContainer {
+  display: grid;
+  gap: var(--space-xl);
+  padding: var(--space-md);
+  grid-template-columns: repeat(auto-fill, minmax(17.5rem, 1fr));
+}
+
+.imageWrapper {
+  position: relative;
+  aspect-ratio: 1.618;
+  margin-bottom: var(--space-xs);
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-md);
+  overflow: clip;
+}
+
+.postTitle {
+  margin-bottom: var(--space-xxs);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+}
+
+.postDescription {
+  color: var(--color-text-primary);
+}
+
+.postViewAndDate {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.date::before {
+  content: "•";
+  margin: 0 var(--space-xxs);
+}

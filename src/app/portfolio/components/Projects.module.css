@@ -27,7 +27,7 @@
   height: 100%;
   padding: 1.5rem;
   border-radius: 0.5rem;
-  box-shadow: var(--box-shadow-sm) var(--shadow-color);
+  box-shadow: var(--box-shadow-sm);
   transition: transform 0.5s ease;
 }
 
