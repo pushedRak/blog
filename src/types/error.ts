@@ -1,4 +1,5 @@
 export type ApiErrorType =
+  | "DB_INSERT_ERROR"
   | "DB_UPDATE_ERROR"
   | "DB_TRANSACTION_ERROR"
   | "DB_CONNECTION_ERROR"
