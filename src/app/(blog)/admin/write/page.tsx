@@ -9,6 +9,7 @@ import { serialize } from "next-mdx-remote-client/serialize";
 import remarkGfm from "remark-gfm";
 import rehypePrettyCode, { Options } from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
+import { mdxComponents } from "@components/mdx";
 
 const prettyCodeOptions: Options = {
   defaultLang: "terminal",
@@ -185,7 +186,7 @@ export default function WritePage() {
       </div>
       <div className={styles.previewContainer}>
         {mdxSource && "compiledSource" in mdxSource && (
-          <MDXClient {...mdxSource} />
+          <MDXClient {...mdxSource} components={mdxComponents} />
         )}
       </div>
     </div>
