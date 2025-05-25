@@ -2,10 +2,8 @@
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  margin: var(--space-lg) 0;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: var(--box-shadow-sm);
 }
 
 .containerFill {
