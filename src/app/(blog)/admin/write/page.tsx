@@ -10,6 +10,14 @@ import remarkGfm from "remark-gfm";
 import rehypePrettyCode, { Options } from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import { mdxComponents } from "@components/mdx";
+import {
+  createPost,
+  DraftPost,
+  getDraftPosts,
+  publishPost,
+  updateDraftPost,
+} from "@services/post";
+import Drafts from "./components/Drafts";
 
 const prettyCodeOptions: Options = {
   defaultLang: "terminal",
@@ -31,10 +39,120 @@ export default function WritePage() {
     Record<string, unknown>
   > | null>(null);
 
+  const [draftPosts, setDraftPosts] = useState<DraftPost[]>([]);
+  const [selectedDraftId, setSelectedDraftId] = useState<string>("");
+
+  const handleNewPost = () => {
+    setTitle("");
+    setSlug("");
+    setContent("");
+    setCategoryId("");
+    setTag("");
+    setDescription("");
+    setThumbnailUrl("");
+  };
+
+  const setForm = ({
+    title,
+    slug,
+    content,
+    categoryId,
+    tags,
+    description,
+    thumbnailUrl,
+  }: {
+    title: string;
+    slug: string;
+    content: string;
+    categoryId: string;
+    tags: string[];
+    description?: string;
+    thumbnailUrl?: string;
+  }) => {
+    setTitle(title);
+    setSlug(slug);
+    setContent(content);
+    setCategoryId(categoryId);
+    setTag(tags.join(", "));
+    setDescription(description || "");
+    setThumbnailUrl(thumbnailUrl || "");
+  };
+
+  const handleSubmit = async () => {
+    const tagsArray = tag
+      .split(",")
+      .map((t) => t.trim())
+      .filter((t) => t.length > 0);
+
+    const postData = {
+      title,
+      slug,
+      content,
+      categoryId,
+      tags: tagsArray,
+      metadata: {
+        description,
+        thumbnailUrl,
+      },
+    };
+
+    if (!selectedDraftId) {
+      try {
+        // 1. 임시 저장
+        const savedPost = await createPost(postData);
+
+        // 2. 발행 여부 확인
+        const shouldPublish = window.confirm("글을 바로 발행하시겠습니까?");
+
+        if (shouldPublish) {
+          await publishPost(savedPost.id);
+          alert("글이 성공적으로 발행되었습니다!");
+        } else {
+          alert("임시 저장되었습니다.");
+        }
+      } catch (error) {
+        alert(
+          error instanceof Error
+            ? error.message
+            : "저장 중 오류가 발생했습니다."
+        );
+      }
+
+      return;
+    }
+
+    try {
+      // 1. 수정
+      const updatedPost = await updateDraftPost(selectedDraftId, postData);
+
+      // 2. 발행 여부 확인
+      const shouldPublish = window.confirm("글을 바로 발행하시겠습니까?");
+
+      if (shouldPublish) {
+        await publishPost(updatedPost.id);
+        alert("글이 성공적으로 발행되었습니다!");
+      } else {
+        alert("수정되었습니다.");
+      }
+    } catch (error) {
+      alert(
+        error instanceof Error ? error.message : "수정 중 오류가 발생했습니다."
+      );
+    }
+
+    // 목록 새로고침
+    const updatedDrafts = await getDraftPosts();
+    setDraftPosts(updatedDrafts);
+  };
+
   useEffect(() => {
     const fetchCategories = async () => {
-      const data = await getCategories();
-      setCategories(data);
+      try {
+        const data = await getCategories();
+        setCategories(data);
+      } catch (error) {
+        console.error("카테고리 로드 실패:", error);
+      }
     };
 
     fetchCategories();
@@ -68,75 +186,17 @@ export default function WritePage() {
     processMdx();
   }, [content]);
 
-  const handleSubmit = async () => {
-    if (!title || !categoryId || !content) {
-      alert("제목, 카테고리, 내용을 모두 입력해주세요.");
-      return;
-    }
-
-    const tagsArray = tag
-      .split(",")
-      .map((t) => t.trim())
-      .filter((t) => t.length > 0);
-
-    const metadata = {
-      description,
-      thumbnailUrl,
-      // 필요시 여기에 추가 필드 삽입 가능 (예: seoTitle, readTime 등)
-    };
-
-    const postData = {
-      title,
-      slug,
-      content,
-      categoryId,
-      tags: tagsArray,
-      metadata,
-    };
-
-    try {
-      // 1. 임시 저장(초안 저장)
-      const response = await fetch("/api/posts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(postData),
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        alert(error.message || "임시 저장에 실패했습니다.");
-        console.log(error.detail);
-        return;
-      }
-
-      const savedPost = await response.json();
-
-      // 2. 발행 여부 확인 (예: 바로 발행 버튼 추가 시)
-      const shouldPublish = window.confirm("글을 바로 발행하시겠습니까?");
-      if (shouldPublish) {
-        const publishRes = await fetch(`/api/posts/publish/${savedPost.id}`, {
-          method: "PATCH",
-        });
-
-        if (!publishRes.ok) {
-          const error = await publishRes.json();
-          alert(error.message || "발행에 실패했습니다.");
-          return;
-        }
-
-        alert("글이 성공적으로 발행되었습니다!");
-        // 이동 등 추가 처리
-      } else {
-        alert("임시 저장되었습니다.");
-      }
-    } catch {
-      alert("저장 중 오류가 발생했습니다.");
-    }
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.inputContainer}>
+        <Drafts
+          handleNewPost={handleNewPost}
+          setForm={setForm}
+          draftPosts={draftPosts}
+          setDraftPosts={setDraftPosts}
+          selectedDraftId={selectedDraftId}
+          setSelectedDraftId={setSelectedDraftId}
+        />
         <div className={styles.titleContainer}>
           <input
             className={styles.title}

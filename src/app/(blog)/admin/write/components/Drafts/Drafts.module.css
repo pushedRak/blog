@@ -1,0 +1,72 @@
+.draftSection {
+  margin-bottom: var(--space-md);
+  padding: var(--space-md);
+  border: 0.0625rem solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.draftHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.draftHeader button {
+  margin-left: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 0.0625rem solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.draftList {
+  max-height: 300px;
+  padding-top: 1rem;
+  overflow-y: auto;
+}
+
+.draftItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md);
+  margin-bottom: var(--space-xs);
+  border: 0.0625rem solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.draftItem:hover {
+  background-color: var(--color-bg-tertiary);
+}
+
+.draftItem.selected {
+  background-color: #e3f2fd;
+  border-color: var(--color-accent);
+}
+
+.draftItem h4 {
+  margin: 0 0 var(--space-xs) 0;
+  font-size: var(--font-size-base);
+}
+
+.draftItem p {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.deleteButton {
+  padding: var(--space-xxs) var(--space-xs);
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+}
+
+.deleteButton:hover {
+  background-color: #d32f2f;
+}

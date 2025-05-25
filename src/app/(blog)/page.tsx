@@ -1,12 +1,13 @@
 import SafeImage from "@components/SafeImage";
 import styles from "./page.module.css";
-import { PostListItem } from "@customTypes/post";
 import { getPosts } from "@services/post";
 import { getRelativeTime } from "@utils/formatDate";
 import Link from "next/link";
 
+export const revalidate = 3600;
+
 export default async function BlogHomePage() {
-  const posts: PostListItem[] = await getPosts({
+  const posts = await getPosts({
     page: 1,
     limit: 10,
   });
