@@ -155,7 +155,7 @@ export default function SafeImage({
         alt={alt}
         quality={quality}
         priority={priority}
-        sizes={sizes}
+        sizes={sizes || "(max-width: 768px) 100vw, 800px"}
         onLoad={handleLoad}
         onError={handleError}
         className={`${styles.image} ${
