@@ -8,7 +8,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Category } from "@customTypes/category";
 import { getCategoryLabel } from "@utils/categoryMapper";
-import Flex from "./Flex";
+import Flex from "@components/Flex/Flex";
 import Profile from "./Profile";
 
 export default function Navbar({ categories }: { categories: Category[] }) {

@@ -5,7 +5,7 @@ import { createClient } from "@utils/supabase/client";
 import { useEffect, useRef, useState } from "react";
 import type { User } from "@supabase/supabase-js";
 import Image from "next/image";
-import Flex from "./Flex";
+import Flex from "../../Flex/Flex";
 import Link from "next/link";
 
 export default function Profile() {
