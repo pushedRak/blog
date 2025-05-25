@@ -1,5 +1,5 @@
 import { getPost } from "@services/post";
-import ViewIncrement from "@components/ViewIncreasement";
+import ViewIncrement from "./_components/ViewIncreasement";
 
 interface PostPageProps {
   params: Promise<{
