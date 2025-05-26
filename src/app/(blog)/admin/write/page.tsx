@@ -20,7 +20,6 @@ import {
 import Drafts from "./components/Drafts";
 
 const prettyCodeOptions: Options = {
-  defaultLang: "terminal",
   keepBackground: true,
   theme: "github-dark",
 };

@@ -1,0 +1,49 @@
+.container {
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  top: 50%;
+  right: 1rem;
+  font-size: var(--font-size-sm);
+  transform: translateY(-50%);
+  
+  a {
+    color: var(--color-text-secondary);
+  }
+
+  @media (min-width: 93rem) {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.tocList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xxs);
+}
+
+.tocList li.tight {
+  margin: 0.05rem 0;
+}
+
+.tocList li.h1indent {
+  margin-left: 0;
+}
+
+.tocList li.h2indent {
+  margin-left: 0;
+}
+
+.tocList li.h3indent {
+  margin-left: var(--space-md);
+}
+
+.active {
+  font-weight: var(--font-weight-bold);
+  transition: font-weight 0.3s ease;
+
+  a {
+    color: var(--color-text-primary)
+  }
+}

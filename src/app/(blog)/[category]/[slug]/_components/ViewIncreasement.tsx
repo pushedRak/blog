@@ -26,7 +26,7 @@ export default function ViewIncrement({ postId }: ViewIncrementProps) {
       }
     };
 
-    // 1초 후 조회수 증가 (실제 읽기 의도 반영)
+    // 1초 후 조회수 증가
     const timer = setTimeout(incrementView, 1000);
 
     return () => clearTimeout(timer);

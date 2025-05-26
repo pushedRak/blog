@@ -1,0 +1,20 @@
+.article {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.thumbnailWrapper {
+  max-width: 36rem;
+  margin: 0 auto var(--space-xl);
+}
+
+.title {
+  font-size: var(--font-size-xxl);
+}
+
+.header {
+  margin-bottom: var(--space-xxl);
+  padding-bottom: var(--space-sm);
+  border-bottom: 0.0625rem solid var(--color-border);
+}
