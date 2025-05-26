@@ -12,6 +12,7 @@ export async function GET(req: Request) {
   const offset = (page - 1) * limit;
 
   try {
+    // 1. 포스트 목록 조회 (조회수 제외)
     let query = supabase
       .from("posts")
       .select(
@@ -27,9 +28,6 @@ export async function GET(req: Request) {
           id,
           name,
           type
-        ),
-        post_views (
-          view_count
         )
       `
       )
@@ -52,66 +50,39 @@ export async function GET(req: Request) {
       );
     }
 
-    // 조회수 정보 정리
+    // 2. 포스트 ID들 추출
+    const postIds = posts?.map((post) => post.id) || [];
+
+    // 3. 조회수 정보 별도 조회
+    const { data: viewsData, error: viewsError } = await supabase
+      .from("post_views")
+      .select("post_id, view_count, last_viewed_at")
+      .in("post_id", postIds);
+
+    if (viewsError) {
+      console.error("조회수 조회 오류:", viewsError);
+    }
+
+    // 4. 조회수 데이터를 포스트별로 매핑
+    const viewsMap =
+      viewsData?.reduce((acc, view) => {
+        acc[view.post_id] = {
+          view_count: view.view_count,
+          last_viewed_at: view.last_viewed_at,
+        };
+        return acc;
+      }, {} as Record<string, { view_count: number; last_viewed_at: string | null }>) ||
+      {};
+
+    // 5. 포스트와 조회수 데이터 결합
     const postsWithViews =
       posts?.map((post) => ({
         ...post,
-        view_count: post.post_views?.[0]?.view_count || 0,
-        post_views: undefined,
+        view_count: viewsMap[post.id]?.view_count || 0,
+        last_viewed_at: viewsMap[post.id]?.last_viewed_at || null,
       })) || [];
 
     return NextResponse.json(postsWithViews);
-  } catch (err: unknown) {
-    let message = "알 수 없는 오류입니다.";
-    if (err instanceof Error) message = err.message;
-    return createApiError(
-      "INTERNAL_SERVER_ERROR",
-      "서버 내부 오류",
-      500,
-      message
-    );
-  }
-}
-
-export async function POST(req: Request) {
-  const supabase = await createClient();
-  const body = await req.json();
-
-  try {
-    const { data: postId, error } = await supabase.rpc("create_post_complete", {
-      title: body.title,
-      slug: body.slug,
-      content: body.content,
-      category_id: body.categoryId,
-      metadata: body.metadata || {},
-      tags: body.tags || [],
-    });
-
-    if (error) {
-      return createApiError(
-        "DB_TRANSACTION_ERROR",
-        "포스트 생성 중 오류 발생",
-        500,
-        error.message
-      );
-    }
-
-    // 생성된 포스트 조회
-    const { data: post, error: postError } = await supabase
-      .from("posts")
-      .select("*")
-      .eq("id", postId)
-      .single();
-
-    if (postError || !post) {
-      return createApiError(
-        "NOT_FOUND",
-        "생성된 포스트를 찾을 수 없습니다",
-        404
-      );
-    }
-
-    return NextResponse.json(post);
   } catch (err: unknown) {
     let message = "알 수 없는 오류입니다.";
     if (err instanceof Error) message = err.message;

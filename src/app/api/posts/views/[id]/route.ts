@@ -36,6 +36,8 @@ export async function POST(
       );
     }
 
+    let updatedViewCount = 1; // 조회수 추적 변수 추가
+
     if (existingView) {
       // 기존 레코드가 있으면 업데이트
       const { error: updateError } = await supabase
@@ -54,6 +56,8 @@ export async function POST(
           updateError.message
         );
       }
+
+      updatedViewCount = existingView.view_count + 1; // 증가된 조회수 저장
     } else {
       // 없으면 새 레코드 생성
       const { error: insertError } = await supabase.from("post_views").insert({
@@ -70,9 +74,15 @@ export async function POST(
           insertError.message
         );
       }
+
+      updatedViewCount = 1; // 새 레코드의 조회수는 1
     }
 
-    return NextResponse.json({ success: true });
+    // 증가된 조회수와 함께 응답 반환
+    return NextResponse.json({
+      success: true,
+      view_count: updatedViewCount,
+    });
   } catch (err) {
     let message = "알 수 없는 오류입니다.";
     if (err instanceof Error) message = err.message;

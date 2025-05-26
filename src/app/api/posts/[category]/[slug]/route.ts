@@ -10,7 +10,7 @@ export async function GET(
   const { category, slug } = await params;
 
   try {
-    // 1. 포스트 조회
+    // 1. 포스트 조회 (조회수 제외)
     const { data: post, error } = await supabase
       .from("posts")
       .select(
@@ -27,10 +27,6 @@ export async function GET(
           id,
           name,
           type
-        ),
-        post_views (
-          view_count,
-          last_viewed_at
         )
       `
       )
@@ -52,12 +48,22 @@ export async function GET(
       return createApiError("NOT_FOUND", "포스트를 찾을 수 없습니다.", 404);
     }
 
-    // 2. 조회수 정보 정리
+    // 2. 해당 포스트의 조회수 정보 조회
+    const { data: viewData, error: viewError } = await supabase
+      .from("post_views")
+      .select("view_count, last_viewed_at")
+      .eq("post_id", post.id)
+      .single();
+
+    if (viewError && viewError.code !== "PGRST116") {
+      console.error("조회수 조회 오류:", viewError);
+    }
+
+    // 3. 포스트와 조회수 정보 결합
     const postWithViewCount = {
       ...post,
-      view_count: post.post_views?.[0]?.view_count || 0,
-      last_viewed_at: post.post_views?.[0]?.last_viewed_at || null,
-      post_views: undefined,
+      view_count: viewData?.view_count || 0,
+      last_viewed_at: viewData?.last_viewed_at || null,
     };
 
     return NextResponse.json(postWithViewCount);
