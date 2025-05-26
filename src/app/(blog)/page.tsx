@@ -4,7 +4,7 @@ import { getPosts } from "@services/post";
 import { getRelativeTime } from "@utils/formatDate";
 import Link from "next/link";
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 export default async function BlogHomePage() {
   const posts = await getPosts({
