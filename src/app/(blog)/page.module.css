@@ -1,21 +1,21 @@
 .postsContainer {
   display: grid;
-  gap: var(--space-xl);
-  padding: var(--space-md);
+  gap: var(--spacing-8);
+  padding: var(--spacing-4);
   grid-template-columns: repeat(auto-fill, minmax(17.5rem, 1fr));
 }
 
 .imageWrapper {
   position: relative;
   aspect-ratio: 1.618;
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--spacing-2);
   background-color: var(--color-bg-secondary);
   border-radius: var(--radius-md);
   overflow: clip;
 }
 
 .postTitle {
-  margin-bottom: var(--space-xxs);
+  margin-bottom: var(--spacing-1);
   color: var(--color-text-primary);
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-medium);
@@ -32,5 +32,5 @@
 
 .date::before {
   content: "•";
-  margin: 0 var(--space-xxs);
+  margin: 0 var(--spacing-1);
 }

@@ -4,6 +4,19 @@ export default function Education() {
   return (
     <div className={styles.container}>
       <div className={styles.educationWrapper}>
+        <p className={styles.period}>2025.06.13</p>
+        <div>
+          <h2 className={styles.title}>정보처리기사</h2>
+          <ul className={styles.description}>
+            <li>
+              <p>
+                SSAFY 수료 이후 CS 기초 지식 부족을 인지하고 정보처리기사 취득
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className={styles.educationWrapper}>
         <p className={styles.period}>2024.01 - 2024.12</p>
         <div>
           <h2 className={styles.title}>삼성 소프트웨어 아카데미</h2>
@@ -18,8 +31,14 @@ export default function Education() {
             </li>
             <li>
               <p>
-                3개의 프로젝트를 진행하며 React, TypeScript, Redux, WebSocket
-                등의 최신 프론트엔드 기술을 익히고,
+                입과 후 7주 만에 Solved.ac 플레티넘 등급 달성 및 삼성 SW 역량
+                테스트 B형 취득
+              </p>
+            </li>
+            <li>
+              <p>
+                React, TypeScript, Styled-Components 등을 활용한 3번의
+                프로젝트에서 모던 프론트엔드 기술을 익힘
               </p>
               <p>
                 사용자 경험을 고려한 UI 구현 및 유지보수 가능한 구조 설계 경험을

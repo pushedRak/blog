@@ -8,7 +8,6 @@ export async function middleware(request: NextRequest) {
     },
   });
 
-  // Middleware 전용 Supabase client
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -27,7 +26,6 @@ export async function middleware(request: NextRequest) {
     }
   );
 
-  // 권한 체크 로직
   if (request.nextUrl.pathname.startsWith("/admin")) {
     const {
       data: { user },

@@ -1,19 +1,19 @@
 .container {
   display: flex;
-  gap: var(--space-md);
+  gap: var(--spacing-4);
 }
 
 .passwordInput {
-  margin-right: var(--space-md);
+  margin-right: var(--spacing-4);
 }
 
 .inputContainer {
   flex: 1;
   display: flex;
   flex-direction: column;
-  row-gap: var(--space-xs);
+  row-gap: var(--spacing-2);
   height: calc(100vh - 7.5rem);
-  padding-right: var(--space-lg);
+  padding-right: var(--spacing-6);
   border-right: 0.0625rem solid var(--color-border);
   overflow: auto;
 }
@@ -28,7 +28,7 @@
 
 .titleContainer {
   display: flex;
-  gap: var(--space-md);
+  gap: var(--spacing-4);
 }
 
 .title {
@@ -37,5 +37,5 @@
 
 .content {
   height: 100vh;
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--spacing-8);
 }

@@ -9,8 +9,8 @@
 
 .loadingDiv {
   height: 1.25rem;
-  margin-bottom: var(--space-xs);
-  border-radius: var(--space-xs);
+  margin-bottom: var(--spacing-2);
+  border-radius: var(--spacing-2);
   background-color: var(--color-bg-secondary);
   background-image: linear-gradient(
     90deg,
@@ -27,7 +27,7 @@
 
 .titleDiv {
   height: 2rem;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--spacing-4);
 }
 
 .short {

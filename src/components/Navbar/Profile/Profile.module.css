@@ -2,7 +2,7 @@
   position: relative;
   width: 2.25rem;
   height: 2.25rem;
-  margin: 0 var(--space-md);
+  margin: 0 var(--spacing-4);
   background-color: var(--color-bg-secondary);
   border-radius: var(--radius-full);
   cursor: pointer;
@@ -42,12 +42,12 @@
 }
 
 .profileSection {
-  padding: var(--space-md);
+  padding: var(--spacing-4);
   cursor: default;
 }
 
 .section {
-  padding: var(--space-xs) 0;
+  padding: var(--spacing-2) 0;
 }
 
 .email {
@@ -61,7 +61,7 @@
 }
 
 .button {
-  padding: var(--space-xs) var(--space-md);
+  padding: var(--spacing-2) var(--spacing-4);
   cursor: pointer;
 }
 

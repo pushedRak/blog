@@ -1,0 +1,29 @@
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.infoHeading {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.challengeTitle {
+  font-size: 1.25rem;
+}
+
+.challengeContent {
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+}
+
+.challengeImageWrapper {
+  flex: 1;
+  flex-shrink: 0;
+  position: relative;
+  height: 20rem;
+  border-radius: var(--spacing-3);
+  overflow: hidden;
+}

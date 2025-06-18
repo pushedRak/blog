@@ -26,12 +26,12 @@
 .loadingSpinner {
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--spacing-2);
 }
 
 .loadingDot {
-  width: var(--space-md);
-  height: var(--space-md);
+  width: var(--spacing-4);
+  height: var(--spacing-4);
   background-color: var(--color-text-tertiary);
   border-radius: var(--radius-full);
   animation: bounce 1s infinite;
@@ -88,7 +88,7 @@
 
 .errorIcon {
   font-size: var(--font-size-xl);
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--spacing-2);
 }
 
 .errorText {
@@ -138,7 +138,7 @@
 }
 
 .spinnerText {
-  margin-top: var(--space-xs);
+  margin-top: var(--spacing-2);
   font-size: var(--font-size-xs);
   color: var(--color-text-tertiary);
   text-align: center;
@@ -146,8 +146,8 @@
 
 @media (max-width: 768px) {
   .loadingDot {
-    width: var(--space-sm);
-    height: var(--space-sm);
+    width: var(--spacing-3);
+    height: var(--spacing-3);
   }
   
   .spinnerRing {

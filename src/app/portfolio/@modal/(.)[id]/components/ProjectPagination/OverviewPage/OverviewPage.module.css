@@ -1,0 +1,62 @@
+
+
+.title {
+  font-size: 3rem;
+}
+
+.subtitle {
+  margin-bottom: var(--spacing-2);
+  color: var(--color-text-tertiary);
+  font-size: 1.3rem;
+}
+
+.infoHeading {
+  padding-bottom: var(--spacing-1);
+  font-size: 1.3rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+.imageWrapper {
+  position: relative;
+  height: 20rem;
+  margin: var(--spacing-4) 0;
+  border: 0.0625rem solid var(--color-border);
+  border-radius: var(--spacing-2);
+  background-color: var(--color-bg-secondary);
+}
+
+.techIconWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip {
+  visibility: hidden;
+  width: max-content;
+  background-color: var(--color-text-secondary);
+  color: var(--color-bg-secondary);
+  text-align: center;
+  border-radius: var(--spacing-1);
+  padding: var(--spacing-1) var(--spacing-2);
+  position: absolute;
+  z-index: 1;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--font-size-sm);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.techIconWrapper:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.techIcon {
+  border-radius: var(--spacing-1);
+}
+
+.overview {
+  white-space: pre-wrap;
+}

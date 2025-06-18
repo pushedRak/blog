@@ -39,7 +39,7 @@ export function Modal({ children }: ModalProps) {
       <div className={styles.container} onClick={(e) => e.stopPropagation()}>
         {children}
         <button className={styles.closeButton} onClick={onDismiss}>
-          닫기
+          ✕
         </button>
       </div>
     </div>,

@@ -1,0 +1,33 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0.0625rem solid var(--color-border);
+  border-radius: 50%;
+  background-color: var(--color-bg-primary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.button_prev {
+  left: var(--spacing-1);
+}
+
+.button_next {
+  right: var(--spacing-1);
+}
+
+.button:hover:not(.disabled) {
+  background: var(--color-bg-secondary);
+  border-color: var(--color-bg-tertiary);
+}
+
+.button.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}

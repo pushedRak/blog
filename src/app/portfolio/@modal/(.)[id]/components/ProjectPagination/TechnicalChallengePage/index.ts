@@ -1,0 +1,1 @@
+export { TechnicalChallengePage } from "./TechnicalChallengePage";

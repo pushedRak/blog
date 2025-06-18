@@ -20,7 +20,7 @@
 .tocList {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xxs);
+  gap: var(--spacing-1);
 }
 
 .tocList li.tight {
@@ -36,7 +36,7 @@
 }
 
 .tocList li.h3indent {
-  margin-left: var(--space-md);
+  margin-left: var(--spacing-4);
 }
 
 .active {

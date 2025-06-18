@@ -11,6 +11,7 @@
 }
 
 .period {
+  width: 10rem;
   color: var(--color-text-tertiary);
 }
 
@@ -22,7 +23,6 @@
 .subtitle {
   font-size: 1.15rem;
   color: var(--color-text-tertiary);
-  padding-bottom: 1rem;
 }
 
 .description {
@@ -30,10 +30,15 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  padding-top: var(--spacing-4);
   padding-left: 1.25rem;
   font-size: 0.8rem;
 
   p {
     font-size: 1.1rem;
   }
+}
+
+.accent {
+  color: var(--color-accent);
 }

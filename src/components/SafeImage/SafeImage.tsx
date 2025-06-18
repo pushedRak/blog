@@ -26,6 +26,10 @@ function isValidUrl(url: string): boolean {
     return false;
   }
 
+  if (url.startsWith("/") || url.startsWith("./") || url.startsWith("../")) {
+    return true;
+  }
+
   try {
     const urlObj = new URL(url);
     return urlObj.protocol === "http:" || urlObj.protocol === "https:";

@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 5rem 1rem 10rem;
+}
+
+.title {
+  font-size: var(--font-size-xxl);
+  margin-bottom: var(--spacing-8);
+}

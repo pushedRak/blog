@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.greeting {
+  font-size: 3rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+.name {
+  margin-right: var(--spacing-1);
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--spacing-2);
+  background-color: var(--color-accent);
+  color: #f7f7f8;
+  font-style: normal; 
+  font-weight: var(--font-weight-extrabold);
+}

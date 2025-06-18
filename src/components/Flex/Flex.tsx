@@ -15,7 +15,7 @@ interface FlexProps {
     | "space-evenly";
   align?: "flex-start" | "center" | "flex-end" | "stretch" | "baseline";
   wrap?: "nowrap" | "wrap" | "wrap-reverse";
-  gap?: "xs" | "sm" | "md" | "lg" | "xl";
+  gap?: "xs" | "sm" | "md" | "lg" | "xl" | "xxl" | "xxxl" | "4xl";
   className?: string;
 }
 
