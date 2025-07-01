@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import styles from "./MyRole.module.css";
-import SafeImage from "@components/SafeImage";
+import SafeImage from "@shared/components/SafeImage";
 
 type Media = {
   description: string;

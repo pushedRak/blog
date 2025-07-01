@@ -1,8 +1,8 @@
 import styles from "./OverviewPage.module.css";
-import Flex from "@components/Flex";
+import Flex from "@shared/components/Flex";
 import { ProjectDetail, TechStack } from "../../../type/project";
 import Image from "next/image";
-import SafeImage from "@components/SafeImage";
+import SafeImage from "@shared/components/SafeImage";
 import { MyRole } from "./MyRole";
 
 export function OverviewPage({ project }: { project: ProjectDetail }) {

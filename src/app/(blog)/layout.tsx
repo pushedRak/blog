@@ -1,20 +1,15 @@
-import Navbar from "@components/Navbar";
 import styles from "./layout.module.css";
-import { getCategories } from "@services/category";
+import Navbar from "@shared/components/Navbar";
 
-export default async function BlogLayout({
+export default function BlogLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const categories = await getCategories();
-
   return (
-    <div>
-      <div className={styles.content}>
-        <Navbar categories={categories} />
-        <main className={styles.main}>{children}</main>
-      </div>
+    <div className={styles.container}>
+      <Navbar />
+      <main className={styles.main}>{children}</main>
     </div>
   );
 }

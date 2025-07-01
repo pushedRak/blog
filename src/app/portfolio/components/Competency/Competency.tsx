@@ -1,6 +1,6 @@
-import SafeImage from "@components/SafeImage";
+import SafeImage from "@shared/components/SafeImage";
 import styles from "./Competency.module.css";
-import Flex from "@components/Flex";
+import Flex from "@shared/components/Flex";
 
 export function Competency() {
   return (

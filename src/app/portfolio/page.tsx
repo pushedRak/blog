@@ -4,7 +4,7 @@ import TechStack from "./components/TechStack";
 import styles from "./page.module.css";
 import { Metadata } from "next";
 import { Intro, Section, Competency, Projects } from "./components";
-import DarkModeBtn from "@components/DarkModeBtn";
+import DarkModeBtn from "@shared/components/DarkModeBtn";
 
 export const metadata: Metadata = {
   title: "손민락 | 프론트엔드 개발자",

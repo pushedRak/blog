@@ -1,5 +1,5 @@
 import styles from "./LessonsAndRegrets.module.css";
-import Flex from "@components/Flex";
+import Flex from "@shared/components/Flex";
 
 export function LessonsAndRegrets({
   lessons,

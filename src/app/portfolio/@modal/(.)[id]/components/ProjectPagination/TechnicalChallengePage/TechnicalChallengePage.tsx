@@ -1,5 +1,5 @@
 import styles from "./TechnicalChallengePage.module.css";
-import Flex from "@components/Flex";
+import Flex from "@shared/components/Flex";
 import { TechnicalChallenge } from "../../../type/project";
 
 export function TechnicalChallengePage({

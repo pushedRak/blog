@@ -1,0 +1,26 @@
+.container {
+  position: relative;
+}
+
+.profileImageWrapper {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0.0625rem solid var(--color-border);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-base);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.profileMenu {
+  position: absolute;
+  bottom: 100%;
+  left: 0;  
+  width: 10rem;
+  height: 10rem;
+  padding: var(--spacing-4);
+  margin-bottom: var(--spacing-1);
+  box-shadow: var(--shadow-base);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-primary);
+}
