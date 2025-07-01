@@ -1,68 +1,85 @@
 "use client";
 
-import { useState } from "react";
-import BarLeftIcon from "./BarLeftIcon";
-import Logo from "./Logo";
-import styles from "./Navbar.module.css";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Category } from "@customTypes/category";
-import { getCategoryLabel } from "@utils/categoryMapper";
-import Flex from "@components/Flex";
-import Profile from "./Profile";
+import BarLeftIcon from "./components/BarLeftIcon";
+import styles from "./Navbar.module.css";
+import Logo from "./components/Logo";
+import Categories from "./components/Categories";
+import { useEffect, useState } from "react";
 
-export default function Navbar({ categories }: { categories: Category[] }) {
-  const [isExpanded, setIsExpanded] = useState(true);
-  const pathname = decodeURI(usePathname());
+export default function Navbar() {
+  const [expand, setExpand] = useState(true);
+  const [mobileExpand, setMobileExpand] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const categories = [
+    { id: 1, name: "개발" },
+    { id: 2, name: "알고리즘" },
+  ];
+
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.matchMedia("(max-width: 64rem)").matches;
+      setIsMobile(mobile);
+      if (!mobile) setMobileExpand(false);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   return (
     <>
-      <div className={styles.header}>
-        <Flex align="center">
+      <nav className={styles.nav}>
+        <div className={styles.header}>
           <button
-            className={styles.barLeftIconWrapper}
-            onClick={() => setIsExpanded((prev) => !prev)}
+            className={styles.hamburger}
+            onClick={() =>
+              isMobile
+                ? setMobileExpand((prev) => !prev)
+                : setExpand((prev) => !prev)
+            }
           >
-            <BarLeftIcon width={24} height={24} strokeWidth={5} />
+            <BarLeftIcon width={30} height={30} />
           </button>
-          <Link className={styles.logoWrapper} href="/">
-            <Logo width={44.8} height={28} />
+          <Link href="/" className={styles.logoWrapper}>
+            <Logo width={40} height={24} />
           </Link>
-        </Flex>
-        <Profile />
-      </div>
-      <div
-        className={`${styles.sidebar} ${
-          isExpanded ? styles.expanded : styles.collapsed
-        }`}
-      >
-        <div className={styles.linkContainer}>
-          <Link
-            className={`${styles.link} ${
-              pathname === "/" ? styles.active : ""
-            }`}
-            href="/"
-          >
-            홈
-          </Link>
-          {categories.map((category) => (
-            <Link
-              key={category.id}
-              className={`${styles.link} ${
-                pathname === `/${category.name}` ? styles.active : ""
-              }`}
-              href={`/${category.name}`}
-            >
-              {getCategoryLabel(category.name)}
-            </Link>
-          ))}
         </div>
-      </div>
-      <div
-        className={`${styles.sidebarSpace} ${
-          isExpanded ? styles.expanded : styles.collapsed
-        }`}
-      />
+      </nav>
+      {/* 64rem 이상에서 expand 상태에 따라 sidebar 표시 */}
+      {!isMobile && expand && (
+        <aside className={styles.sidebar}>
+          <Categories categories={categories} />
+        </aside>
+      )}
+      {/* 64rem 이하에서 햄버거 클릭 시 overlay와 sidebar 표시 */}
+      {isMobile && mobileExpand && (
+        <>
+          <div
+            className={styles.overlay}
+            onClick={() => setMobileExpand(false)}
+          />
+          <aside className={styles.sidebar}>
+            <div className={styles.header}>
+              <button
+                className={styles.hamburger}
+                onClick={() =>
+                  isMobile
+                    ? setMobileExpand((prev) => !prev)
+                    : setExpand((prev) => !prev)
+                }
+              >
+                <BarLeftIcon width={30} height={30} />
+              </button>
+              <Link href="/" className={styles.logoWrapper}>
+                <Logo width={40} height={24} />
+              </Link>
+            </div>
+            <Categories categories={categories} />
+          </aside>
+        </>
+      )}
     </>
   );
 }

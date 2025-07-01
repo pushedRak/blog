@@ -4,16 +4,15 @@ export default function Education() {
   return (
     <div className={styles.container}>
       <div className={styles.educationWrapper}>
+        <p className={styles.period}>2025.06.27</p>
+        <div>
+          <h2 className={styles.title}>SQLD</h2>
+        </div>
+      </div>
+      <div className={styles.educationWrapper}>
         <p className={styles.period}>2025.06.13</p>
         <div>
           <h2 className={styles.title}>정보처리기사</h2>
-          <ul className={styles.description}>
-            <li>
-              <p>
-                SSAFY 수료 이후 CS 기초 지식 부족을 인지하고 정보처리기사 취득
-              </p>
-            </li>
-          </ul>
         </div>
       </div>
       <div className={styles.educationWrapper}>

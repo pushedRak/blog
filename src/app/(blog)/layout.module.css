@@ -1,14 +1,14 @@
-.content {
+.container {
   display: flex;
+  position: relative;
+  padding-top: 3.75rem;
 }
 
 .main {
-  flex: 1;
-  padding: 3.75rem var(--spacing-8);
-}
-
-@media (max-width: 63.999rem) {
-  .main {
-    padding: 3.75rem var(--spacing-4);
-  }
+  width: 100%;
+  max-width: 48rem;
+  min-height: calc(100vh - 3.75rem);
+  margin: 0 auto;
+  padding: 0 var(--spacing-8);
+  background-color: var(--color-bg-primary);
 }

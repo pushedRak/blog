@@ -1,0 +1,8 @@
+/* CSS 변수 (가장 먼저 로드) */
+@import './variables.css';
+
+/* CSS Reset */
+@import './reset.css';
+
+/* 기본 HTML 요소 스타일 */
+@import './base.css';

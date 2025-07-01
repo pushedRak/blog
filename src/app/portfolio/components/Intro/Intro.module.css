@@ -6,13 +6,14 @@
 .greeting {
   font-size: 3rem;
   font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-base);
 }
 
 .name {
-  margin-right: var(--spacing-1);
+  margin-right: var(--spacing-2);
   padding: var(--spacing-1) var(--spacing-3);
-  border-radius: var(--spacing-2);
-  background-color: var(--color-accent);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-primary);
   color: #f7f7f8;
   font-style: normal; 
   font-weight: var(--font-weight-extrabold);

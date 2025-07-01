@@ -1,15 +1,3 @@
-import { getCategoryLabel } from "@utils/categoryMapper";
-
-export default async function CategoryPage({
-  params,
-}: {
-  params: Promise<{ category: string }>;
-}) {
-  const { category } = await params;
-
-  return (
-    <div>
-      <h1>{getCategoryLabel(category)}</h1>
-    </div>
-  );
+export default function CategoryPage() {
+  return <div>카테고리 페이지</div>;
 }

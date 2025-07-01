@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "../styles/globals.css";
 
 export const metadata: Metadata = {
   title: "락 블로그",
@@ -14,6 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
+      <head></head>
       <body>
         {children}
         <div id="modal-root" />
